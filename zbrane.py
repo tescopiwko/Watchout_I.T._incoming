@@ -18,7 +18,7 @@ class Zbrane:
         rotated_hit_place = pygame.transform.rotate(self.hit_place, direction * 90)
         hit_place_mask = pygame.mask.from_surface(rotated_hit_place)
 
-        for enemy in ITs.list:
-            if 0 <= enemy[0] < hit_place_mask.get_size()[0] and 0 <= enemy[1] < hit_place_mask.get_size()[1]:
-                enemy[3]-self.damage
-    def 
+        for _ in ITs:
+            if 0 <= ITs.x < hit_place_mask.get_size()[0] and 0 <= ITs.y  < hit_place_mask.get_size()[1]:
+                ITs.health -self.damage
+    
