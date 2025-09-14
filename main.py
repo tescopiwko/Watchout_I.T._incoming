@@ -1,5 +1,5 @@
 import pygame
-from test_EP import Hero
+from EP import Hero
 
 screen_x = 800
 screen_y = 600
