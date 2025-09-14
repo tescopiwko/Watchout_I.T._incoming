@@ -1,5 +1,6 @@
 import pygame
 from EP import Hero
+from inventory import Inventory
 
 screen_x = 800
 screen_y = 600
@@ -15,6 +16,8 @@ health = 10
 speed = 8
 color = "red"
 
+inv = Inventory(10, 10, 200, 300)
+
 main_char = Hero(x,y, width, height, health, speed)
 running = True
 clock = pygame.time.Clock()
@@ -29,6 +32,7 @@ while running:
     main_char.move(keys, screen_x, screen_y)
     screen.fill(screen_color)
     main_char.draw(screen)
+    #inv.draw(screen)
     
     pygame.display.flip()
     
