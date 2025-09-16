@@ -47,7 +47,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_i:
+            if event.key == pygame.K_e:
                 is_inventory_open = not is_inventory_open
 
     keys = pygame.key.get_pressed() # ziskani stisknutych klaves
@@ -57,6 +57,7 @@ while running:
     main_char.move(keys, screen_x, screen_y)
     # vykresleni na obrazovku
     screen.fill(screen_color) # vykreslení zelená barva pozadí
+    main_char.draw(screen) # vykreslení hráče
     if is_inventory_open:
         background_form.draw(screen) # vykreslení provizorní grid pozadí
         
@@ -71,7 +72,7 @@ while running:
         process_form.draw(screen) # vykreslení gridu pro AKČNÍ
         for useless_rect in useless_forms:
             useless_rect.draw(screen) # vykreslení vícero gridů pro NĚCO (zatím nefunkční)
-    main_char.draw(screen) # vykreslení hráče
+    
         
         
     pygame.display.flip()
