@@ -57,7 +57,10 @@ while running:
     main_char.move(keys, screen_x, screen_y)
     # vykresleni na obrazovku
     screen.fill(screen_color) # vykreslení zelená barva pozadí
-    main_char.draw(screen) # vykreslení hráče
+    mouse_x, mouse_y = pygame.mouse.get_pos() # ziskani pozice mysi
+    main_char.rotate() # otočení hráče směrem k myši
+    main_char.draw(screen, mouse_x, mouse_y) # vykreslení hráče + cara k mysi
+   
     if is_inventory_open:
         background_form.draw(screen) # vykreslení provizorní grid pozadí
         

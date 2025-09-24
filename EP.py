@@ -1,4 +1,5 @@
 import pygame
+import math
 
 class Hero:
     def __init__(self,x,y, width, height, health, speed):
@@ -38,8 +39,22 @@ class Hero:
             self.y = 0
         if self.x <= 0:
             self.x = 0
-       
-    def draw(self, surface):
-        pygame.draw.rect(surface,(255,0,0), (self.x, self.y, self.width, self.height))
+    def rotate(self):
+        mouse_x, mouse_y = pygame.mouse.get_pos()
+        center_x = self.x + self.width // 2
+        center_y = self.y
+        dx = mouse_x - center_x
+        dy = mouse_y - center_y
+        self.angle = math.degrees(math.atan2(dy, dx))
 
-        
+    def draw(self, surface, mouse_x, mouse_y):
+    # Vytvoření povrchu pro postavu
+        hero_surf = pygame.Surface((self.width, self.height), pygame.SRCALPHA)# scralpha priprava na obrazek
+        pygame.draw.rect(hero_surf, (255, 0, 0), (0, 0, self.width, self.height)) #vykresleni postavy
+    # Otočení povrchu
+        rotated_surf = pygame.transform.rotate(hero_surf, -self.angle)
+    # Získání nových souřadnic pro vykreslení
+        rect = rotated_surf.get_rect(center=(self.x + self.width // 2, self.y + self.height // 2))
+        surface.blit(rotated_surf, rect.topleft)
+    # Vykreslení čáry k myši
+        pygame.draw.line(surface, (255, 0, 0), (self.x + self.width // 2, self.y), (mouse_x, mouse_y))
